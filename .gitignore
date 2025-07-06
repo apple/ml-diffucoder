@@ -26,3 +26,5 @@ env/
 
 # Data
 *.jsonl
+
+.cache/

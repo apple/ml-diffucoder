@@ -1,0 +1,29 @@
+{
+    "name": "open-r1-dev",
+    "dockerComposeFile": [
+      "../docker-compose.yml"
+    ],
+    "service": "open-r1",
+    "workspaceFolder": "/app",
+    "remoteUser": "appuser",
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "ms-python.python",
+          "ms-toolsai.jupyter",
+          "ms-azuretools.vscode-docker"
+        ]
+      }
+    },
+    "mounts": [
+      "source=${localWorkspaceFolder}/.cache,target=/home/appuser/.cache,type=bind"
+    ],
+    "settings": {
+      "terminal.integrated.defaultProfile.linux": "bash",
+      "python.defaultInterpreterPath": "/home/appuser/.venv/bin/python"
+    },
+    "runArgs": [
+      "--gpus",
+      "all"
+    ]
+  }

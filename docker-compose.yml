@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  open-r1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USER_ID: ${USER_ID:-1009}
+        GROUP_ID: ${GROUP_ID:-1009}
+    image: open-r1
+    shm_size: "16g"         # expands /dev/shm to 16 GiB (avoid NCCL shared‑memory errors)
+    ipc: host               # alternatively, reuse host’s full shared‑memory segment
+    volumes:
+      - .:/app
+    environment:
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: all
+      WANDB_API_KEY: ${WANDB_API_KEY}
+      WANDB_ENTITY: ${WANDB_ENTITY}
+      E2B_API_KEY: ${E2B_API_KEY}
+      HUGGINGFACE_HUB_TOKEN: ${HUGGINGFACE_HUB_TOKEN}
+      WANDB_CACHE_DIR: ./.cache/wandb
+      HF_HOME: ./.cache/huggingface
+      HF_DATASETS_CACHE: ./.cache/huggingface/datasets
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities:
+                - gpu
+    command: tail -f /dev/null
+    container_name: open-r1
+    user: "${USER_ID:-1009}:${GROUP_ID:-1009}"
+
+volumes:
+  app:
+    driver: local
