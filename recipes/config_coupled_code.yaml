@@ -1,9 +1,9 @@
 # Model arguments
-model_name_or_path: /path-to-model # e.g. apple/DiffuCoder-7B-Instruct
+model_name_or_path: Dream-org/Dream-v0-Instruct-7B
 torch_dtype: bfloat16
 trust_remote_code: true
 # Data training arguments
-dataset_name: /path-to-dataset # e.g. ./recipes/acecode_hard.jsonl
+dataset_name: ./recipes/acecode_hard.jsonl
 dataset_prompt_column: question
 system_prompt: "You are a helpful assistant."
 
@@ -39,7 +39,7 @@ lr_scheduler_type: cosine_with_min_lr
 lr_scheduler_kwargs:
   min_lr_rate: 0.1
 num_train_epochs: 1
-output_dir: /path-to-output
+output_dir: ./outputs
 overwrite_output_dir: true
 e2b_router_url: 0.0.0.0:8000
 
@@ -54,7 +54,7 @@ generation_temperature: 1.0
 
 report_to:
 - wandb
-wandb_entity: "your-wandb-entity"
+wandb_entity: hikaruasano-the-university-of-tokyo
 wandb_project: "open-r1-code"
 reward_funcs:
 - code
