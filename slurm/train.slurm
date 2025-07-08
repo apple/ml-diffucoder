@@ -7,8 +7,6 @@
 #SBATCH --output=./logs/%x-%j.out
 #SBATCH --error=./logs/%x-%j.err
 #SBATCH --requeue
-#SBATCH --time=3-00:00:00
-
 
 if [[ "$*" == *"--help"* ]]; then
   echo "Usage: sbatch slurm/train.slurm [options]"
@@ -31,10 +29,6 @@ source ~/.bashrc
 source openr1/bin/activate
 START_TIME=$(date +%s)
 echo "START TIME: $(date)"
-
-# Refresh Weka on h4 cache
-echo "Refreshing Weka filesystem..."
-find -L /fsx/h4/ -type f | xargs -d '\n' -r -n512 -P64 weka fs tier fetch
 
 # Default values
 MODEL=""
@@ -171,7 +165,7 @@ SRUN_ARGS=" \
     --ntasks=$NUM_NODES \
     --nodelist=$NODELIST
     "
-srun $SRUN_ARGS bash -c "$LAUNCHER $CMD" 2>&1
+clear; srun $SRUN_ARGS bash -c "$LAUNCHER $CMD" 2>&1
 
 END_TIME=$(date +%s)
 echo "END TIME: $(date)"
