@@ -27,6 +27,12 @@ The goal of this repo is to build the missing pieces of the R1 pipeline such tha
     - `evaluate.py`: evaluates a model on the R1 benchmarks.
     - `generate.py`: generates synthetic data from a model using [Distilabel](https://github.com/argilla-io/distilabel).
 - `Makefile`: contains easy-to-run commands for each step in the R1 pipeline leveraging the scripts above.
+- June 8, 2025. We are still training for 14B models, to be updated. 
+- June 7, 2025. [MLX community implementation of DiffuCoder 8bit model](https://huggingface.co/mlx-community/DiffuCoder-7B-cpGRPO-8bit)
+- June 4, 2025. [MLX](https://github.com/ml-explore/mlx) support in progress. To preview or contribute, please check out this PR started by @Goekdeniz-Guelmez: [this PR](https://github.com/ml-explore/mlx-lm/pull/270)
+- June 4, 2025. Update inference usage/examples/demo.
+- June 2, 2025. Models are available on Huggingface.
+- June 1, 2025. Code is available.
 
 ### Plan of attack
 
